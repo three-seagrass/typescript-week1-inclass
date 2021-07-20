@@ -153,7 +153,8 @@ function handleCarSelectChange() {
   // https://fettblog.eu/this-in-javascript-and-typescript/
 
   // For our purposes within the 'handleCarSelectChange()' function, the 'this' refers to the NEAREST object
-  // 'this' on line 157 refers to the object that we are listening to events (addEventLister) for. The object we're 'listening for' is the nearest object
+  // 'this' on line 157 refers to the object that we are listening to events (addEventLister) for.
+  // The object we're 'listening for' is the nearest object, which in this case is the carSelect
   const selectedValue = this.value;
 
   // We set the value of each options of the select (dropdown) as the index of the carList
