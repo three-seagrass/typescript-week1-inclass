@@ -1,53 +1,100 @@
-// const output: HTMLElement = document.getElementById('output');
-// const button: HTMLElement = document.getElementById('custom-btn');
-// button.addEventListener('click', fizzbuzz);
+// #region ------ DataTypes
+var planet: string = 'Earth';
+var numOfWeeksInYear: number = 52;
+var isLockDown: boolean = false;
+var food: any = 'Noodles';
+food = 1;
+// #endregion
 
-// function fizzbuzz() {
-//   const startNumInput: HTMLInputElement = <HTMLInputElement>(
-//     document.getElementById('start-num')
-//   );
-//   const startNumVal: number = Number(startNumInput.value);
+// #region ------ let and const
+const animal: string = 'deer';
+const numOfPlanets: number = 7;
+const isNight: boolean = false;
+let music: any = 'Punk Pop';
+music = 5;
+// #endregion
 
-//   for (let i = startNumVal; i <= 100; i++) {
-//     if (i % 3 == 0 && i % 5 == 0) {
-//       output.innerHTML += '<p>fizzbuzz ' + i + '</p>';
-//     } else if (i % 3 == 0) {
-//       output.innerHTML += '<p>fizz ' + i + '</p>';
-//     } else if (i % 5 == 0) {
-//       output.innerHTML += '<p>buzz ' + i + '</p>';
-//     }
-//   }
-// }
+// #region ------ Class
+class Student {
+  firstName: string;
+  lastName: string;
+  id: number;
+  age: number;
 
-// class Student {
-//   firstName: string;
-//   lastName: string;
-//   id: number;
-//   age: number;
+  constructor(
+    _firstname: string,
+    _lastname: string,
+    _id: number,
+    _age: number
+  ) {
+    this.firstName = _firstname;
+    this.lastName = _lastname;
+    this.id = _id;
+    this.age = _age;
+  }
 
-//   constructor(
-//     _firstname: string,
-//     _lastname: string,
-//     _id: number,
-//     _age: number
-//   ) {
-//     this.firstName = _firstname;
-//     this.lastName = _lastname;
-//     this.id = _id;
-//     this.age = _age;
-//   }
+  getFullName() {
+    // This method of creating strings is called Template Literal
+    // Read more about Template Literals here: https://www.w3schools.com/js/js_string_templates.asp
+    return `${this.firstName} ${this.lastName}`;
+  }
+}
+// ----------------- Instantiate an class
+const s0: Student = new Student('Jane', 'Smith', 123, 25);
+const s0FullName: string = s0.getFullName();
+// #endregion
 
-//   getFullName() {
-//     return `${this.firstName} ${this.lastName}`;
-//   }
-// }
+// #region ------ Arrays
+const sports: string[] = ['soccer', 'basketball', 'baseball'];
+const years: number[] = [2021, 2022, 2023, 2024, 2025];
 
-// const student1: Student = new Student('Jane', 'Smith', 123, 25);
+// -------------------- Class Arrays
+const s1: Student = new Student('Ci', 'Young', 729346, 30);
+const s2: Student = new Student('Dave', 'Greene', 234532, 27);
+const s3: Student = new Student('Priya', 'Khatri', 501137, 45);
+const studentList: Student[] = [s1, s2, s3];
+// #endregion
 
-// console.log(student1.firstName);
-// console.log(student1.lastName);
-// console.log(student1.getFullName());
+// #region ------ FizzBuzz
+// grabbing the elements from the DOM (Html)
+const fizzBuzzOutput: HTMLElement = document.getElementById('fizzbuzz-output');
+const fizzbuzzRunBtn: HTMLElement = document.getElementById('fizzbuzz-run-btn');
 
+// Detecting the 'click' event using 'addEventListener'
+// Reference to addEventListener: https://www.w3schools.com/jsref/met_document_addeventlistener.asp
+// When user clicks on the Run button, the 'fizzbuzz' function will executes
+fizzbuzzRunBtn.addEventListener('click', fizzbuzz);
+
+function fizzbuzz() {
+  // grabbing the elements from the DOM (Html)
+  // Typescript doesn't know that the 'startNumInput' and 'endNumInput' are HTMLInputElement, instead of 'HTMLElement'
+  // Therefore, we are 'enforcing' the 'HTMLInputElement' type onto these elements using <HTMLInputElement>
+  const startNumInput: HTMLInputElement = <HTMLInputElement>(
+    document.getElementById('start-num')
+  );
+  const endNumInput: HTMLInputElement = <HTMLInputElement>(
+    document.getElementById('end-num')
+  );
+
+  // Typescript thinks that the values from the DOM (Html) are string
+  // Therefore, we need to 'cast' / 'convert' it to a Number
+  const startNumVal: number = Number(startNumInput.value);
+  const endNumVal: number = Number(endNumInput.value);
+
+  // looping through the numbers and outputing the fizzbuzz to the DOM (Html)
+  for (let i = startNumVal; i <= endNumVal; i++) {
+    if (i % 3 == 0 && i % 5 == 0) {
+      fizzBuzzOutput.innerHTML += '<p>fizzbuzz ' + i + '</p>';
+    } else if (i % 3 == 0) {
+      fizzBuzzOutput.innerHTML += '<p>fizz ' + i + '</p>';
+    } else if (i % 5 == 0) {
+      fizzBuzzOutput.innerHTML += '<p>buzz ' + i + '</p>';
+    }
+  }
+}
+// #endregion
+
+// #region ------ Car Dropdown List
 class Car {
   speed: number;
   rego: string;
@@ -61,33 +108,50 @@ class Car {
   increaseSpeed(spd: number): void {
     this.speed += spd;
 
+    // This if statement ensures that the speed of the car doesn't go over the maxSpeed that we have set
     if (this.speed > this.maxSpeed) {
       this.speed = this.maxSpeed;
     }
   }
 }
 
-let innerHtml: string = '';
+// creating instances of Car and then add it to carList
+const car1: Car = new Car(0, '123abc');
+const car2: Car = new Car(10, '456def');
+const car3: Car = new Car(20, '789ghi');
+const carList: Car[] = [car1, car2, car3];
 
-const output: HTMLElement = document.getElementById('output');
-const sports: string[] = ['soccer', 'basketball', 'baseball'];
+const carSelect: HTMLElement = document.getElementById('car-select');
 
-for (let i = 0; i < sports.length; i++) {
-  innerHtml += `<p> ${sports[i]} </p>`;
+// looping through the carList array and adding 'option' to the carSelect
+for (let i = 0; i < carList.length; i++) {
+  // The value of the option should be set to the index (i) of the carList
+  // So that we can 'detect' which element of the carList is being selected using the index
+  carSelect.innerHTML += `<option value=${i}>${carList[i].rego}</option>`;
 }
-output.innerHTML = innerHtml;
 
-// const car1: Car = new Car(10, '123abc');
-// console.log(car1);
-// car1.increaseSpeed(140);
-// console.log(car1);
+// Detect the 'change' event using addEventListener
+// When the user selects a new option from the select (dropdown), the 'change' event will triggers
+// When the change event triggers, handleCarSelectChange function will executes
+carSelect.addEventListener('change', handleCarSelectChange);
 
-class Planet {
-  name: string;
-  numOfMoons: number;
+// Grabbing the cardSpeedOutput element
+const carSpeedOutput: HTMLElement = document.getElementById('car-speed-output');
 
-  constructor(_name: string, _numOfMoons: number) {
-    this.name = _name;
-    this.numOfMoons = _numOfMoons;
-  }
+function handleCarSelectChange() {
+  // Getting the value from the select (dropdown)
+
+  // 'this' is a JavaScript keyword
+  // The 'this' refers to the NEAREST object
+  // Reference: https://fettblog.eu/this-in-javascript-and-typescript/
+
+  // If we look at the Car class, we used 'this.speed' and 'this.rego'. That instance of 'this' refers to the Car object because it is the nearest object
+
+  // 'this' on line 151 refers to the object that we are listening to events (addEventLister) for. Because the object we're listening to is the 'nearest' object
+  const selectedValue = this.value;
+
+  // We set the value of each options of the select (dropdown) as the index of the carList
+  // Therefore we are able to get the element of the carList using the selectedValue, then getting the speed of that element
+  carSpeedOutput.innerHTML = `Speed: ${carList[selectedValue].speed}`;
 }
+// #endregion
