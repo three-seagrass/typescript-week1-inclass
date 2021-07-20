@@ -141,13 +141,19 @@ const carSpeedOutput: HTMLElement = document.getElementById('car-speed-output');
 function handleCarSelectChange() {
   // Getting the value from the select (dropdown)
 
-  // 'this' is a JavaScript keyword
-  // The 'this' refers to the NEAREST object
-  // Reference: https://fettblog.eu/this-in-javascript-and-typescript/
+  // 'this' is a JavaScript keyword and it's weird...
 
-  // If we look at the Car class, we used 'this.speed' and 'this.rego'. That instance of 'this' refers to the Car object because it is the nearest object
+  // We have used 'this' already in this project, see the Car class.
+  // However, the way that 'this' is used in the Car class, and the way that 'this' is used on line 157 are different
 
-  // 'this' on line 151 refers to the object that we are listening to events (addEventLister) for. The object we're 'listening for' is the nearest object
+  // 'this.speed' and 'this.rego' in the Car class refers to the data members/properties of the Car instances (e.g. c1, c2, c3)
+  // Essentially when 'this' used inside a Class, it is referring to the variables within the 'scope' of that class instance
+  // If you REALLY want to do a deepdive, you can read more here:
+  // https://spin.atomicobject.com/2014/10/20/javascript-scope-closures/
+  // https://fettblog.eu/this-in-javascript-and-typescript/
+
+  // For our purposes within the 'handleCarSelectChange()' function, the 'this' refers to the NEAREST object
+  // 'this' on line 157 refers to the object that we are listening to events (addEventLister) for. The object we're 'listening for' is the nearest object
   const selectedValue = this.value;
 
   // We set the value of each options of the select (dropdown) as the index of the carList
