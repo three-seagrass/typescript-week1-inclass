@@ -126,7 +126,7 @@ const carSelect: HTMLElement = document.getElementById('car-select');
 // looping through the carList array and adding 'option' to the carSelect
 for (let i = 0; i < carList.length; i++) {
   // The value of the option should be set to the index (i) of the carList
-  // So that we can 'detect' which element of the carList is being selected using the index
+  // So that we know which element of the carList is being selected using the index
   carSelect.innerHTML += `<option value=${i}>${carList[i].rego}</option>`;
 }
 
