@@ -147,7 +147,7 @@ function handleCarSelectChange() {
 
   // If we look at the Car class, we used 'this.speed' and 'this.rego'. That instance of 'this' refers to the Car object because it is the nearest object
 
-  // 'this' on line 151 refers to the object that we are listening to events (addEventLister) for. Because the object we're listening to is the 'nearest' object
+  // 'this' on line 151 refers to the object that we are listening to events (addEventLister) for. The object we're 'listening for' is the nearest object
   const selectedValue = this.value;
 
   // We set the value of each options of the select (dropdown) as the index of the carList
