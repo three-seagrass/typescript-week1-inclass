@@ -1,8 +1,8 @@
-# TypeScript Week 1 in-class code
+# 🔥 TypeScript Week 1 in-class code
 
 [Edit on StackBlitz ⚡️](https://stackblitz.com/edit/typescript-jqajbc)
 
-# References
+# 👓 References
 `Template Literals`
 - https://www.w3schools.com/js/js_string_templates.asp
 
@@ -12,5 +12,5 @@
 `this`
 - https://fettblog.eu/this-in-javascript-and-typescript/
 
-# Submittable Task
+# ✅ Submittable Task
 `Web Programming Module` > `TypeScript & NodeJS` > `Typescript - Submittable Task 1`
