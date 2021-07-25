@@ -121,7 +121,9 @@ const car2: Car = new Car(10, '456def');
 const car3: Car = new Car(20, '789ghi');
 const carList: Car[] = [car1, car2, car3];
 
-const carSelect: HTMLElement = document.getElementById('car-select');
+const carSelect: HTMLInputElement = <HTMLInputElement>(
+  document.getElementById('car-select')
+);
 
 // looping through the carList array and adding 'option' to the carSelect
 for (let i = 0; i < carList.length; i++) {
@@ -137,27 +139,10 @@ carSelect.addEventListener('change', handleCarSelectChange);
 
 // Grabbing the cardSpeedOutput element
 const carSpeedOutput: HTMLElement = document.getElementById('car-speed-output');
-
 function handleCarSelectChange() {
-  // Getting the value from the select (dropdown)
+  const selectedValue = carSelect.value;
 
-  // 'this' is a JavaScript keyword and it's weird...
-
-  // We have used 'this' already in this project, see the Car class.
-  // However, the way that 'this' is used in the Car class, and the way that 'this' is used on line 158 are different
-
-  // 'this.speed' and 'this.rego' in the Car class refers to the data members/properties of the Car instances (e.g. c1, c2, c3)
-  // Essentially when 'this' used inside a Class, it is referring to the variables within the 'scope' of that class instance
-  // If you REALLY want to do a deepdive, you can read more here:
-  // https://spin.atomicobject.com/2014/10/20/javascript-scope-closures/
-  // https://fettblog.eu/this-in-javascript-and-typescript/
-
-  // For our purposes within the 'handleCarSelectChange()' function, the 'this' refers to the NEAREST object
-  // 'this' on line 158 refers to the object that we are listening to events (addEventLister) for.
-  // The object we're 'listening for' is the nearest object, which in this case is the carSelect
-  const selectedValue = this.value;
-
-  // We set the value of each options of the select (dropdown) as the index of the carList
+  // Since, we'd set the value of each options of the select (dropdown) as the index of the carList
   // Therefore we are able to get the element of the carList using the selectedValue, then getting the speed of that element
   carSpeedOutput.innerHTML = `Speed: ${carList[selectedValue].speed}`;
 }
